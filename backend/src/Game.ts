@@ -1,6 +1,6 @@
 import { WebSocket } from "ws";
 import { Chess } from "chess.js";
-import { GAME_OVER, INIT_GAME, MOVE } from "./messages";
+import { GAME_OVER, INIT_GAME, INVALID_MOVE, MOVE } from "./messages";
 
 export class Game {
   public participant1: WebSocket | null;
@@ -64,6 +64,23 @@ export class Game {
       // emit a socket message to the frontend
       console.log("did not make a valid move");
       console.log(error);
+      this.participant1?.send(
+        JSON.stringify({
+          INVALID_MOVE,
+          payload: {
+            update: "could not make move",
+          },
+        })
+      );
+
+      this.participant2?.send(
+        JSON.stringify({
+          INVALID_MOVE,
+          payload: {
+            update: "could not make move",
+          },
+        })
+      );
     }
 
     console.log("successfully made a move");
@@ -73,7 +90,7 @@ export class Game {
     if (this.board.isGameOver()) {
       // emit a game over message to both the parties
       console.log("game is now over");
-      this.participant1?.emit(
+      this.participant1?.send(
         JSON.stringify({
           GAME_OVER,
           payload: {
@@ -82,7 +99,7 @@ export class Game {
         })
       );
 
-      this.participant2?.emit(
+      this.participant2?.send(
         JSON.stringify({
           GAME_OVER,
           payload: {

@@ -1,8 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSocket } from "../hooks/useSocket";
+
+export const INIT_GAME = "init_game";
+export const MOVE = "move";
+export const GAME_OVER = "game_over";
+export const INVALID_MOVE = "invalid_move";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const socket = useSocket();
+  if (!socket) {
+    console.log("connecting to socket");
+    return <div>Connecting.....</div>;
+  }
 
   return (
     <section className="big-container block-space">
@@ -22,7 +33,7 @@ const LandingPage = () => {
               navigate("/game");
             }}
           >
-            Play Now
+            Go to Game
           </button>
         </div>
       </div>
