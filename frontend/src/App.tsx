@@ -1,13 +1,16 @@
 import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./screens/LandingPage";
+import Game from "./screens/Game";
 
 function App() {
   return (
-    <>
-      Hello world
-      <h1 className="text-3xl text-red-400 font-bold underline">
-        Hello world!
-      </h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/game" element={<Game />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

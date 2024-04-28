@@ -1,3 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+  h2 {
+    @apply scroll-m-20  text-3xl font-semibold tracking-tight first:mt-0;
+  }
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  p {
+    @apply text-xl text-black;
+  }
+
+  .lead {
+    @apply text-xl text-muted-foreground;
+  }
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+.big-container {
+  margin-inline: auto;
+  width: min(90%, 80.5rem);
+}
+
+.narrow-container {
+  margin-inline: auto;
+  width: min(80%, 55.5rem);
+}
+
+.block-space {
+  padding-block: min(12vh, 17rem);
+}
+
+.block-space-mini {
+  padding-block: min(3vh, 6rem);
+}
